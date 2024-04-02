@@ -15,9 +15,9 @@ class mdlLog extends connectMySQL{
                     $_SESSION['GYM']['alias'] = $result[0]['alias'];
                     $_SESSION['GYM']['nombre'] = $result[0]['Nombre'];
                     $_SESSION['GYM']['clientes'] = $result[0]['clientes'];
-                    $_SESSION['GYM']['membresias'] = $result[0]['membresias'];
-                    $_SESSION['GYM']['facturacion'] = $result[0]['facturacion'] ;
-                    $_SESSION['GYM']['seguridad'] = $result[0]['seguridad'];
+                    $_SESSION['GYM']['facturacion'] = $result[0]['facturacion'];
+                    $_SESSION['GYM']['reporteria'] = $result[0]['reporteria'];
+                    $_SESSION['GYM']['administracion'] = $result[0]['administracion'];
                 }
             }else{
                 $result = $statement->errorCode();

@@ -15,6 +15,7 @@ if (isset($_SESSION['GYM']['nombre']) && $_SESSION['GYM']['nombre'] != "") {
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
             <title>Formulario</title>
             <link rel="stylesheet" href="./src/css/output.css">
+            <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" /> <!--Replace with your tailwind.css once created-->
       </head>
 
       <body class="bg-gray-200" data-new-gr-c-s-check-loaded="14.1165.0" data-gr-ext-installed="">
