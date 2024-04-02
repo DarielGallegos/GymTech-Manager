@@ -203,7 +203,7 @@ $cargos = $cargos[2];
                                         </button>
                                     </div>
                                     <!-- Modal body -->
-                                    <form class="p-3 md:p-3 max-w-xl mx-auto" id="formularioEmpleados" method="post">
+                                    <form class="p-3 md:p-3 max-w-xl mx-auto" id="formularioEmpleados" method="p    ost">
                                         <div class="grid gap-8">
                                             <div>
                                                 <input type="hidden" name="id" id="txtID" value="">

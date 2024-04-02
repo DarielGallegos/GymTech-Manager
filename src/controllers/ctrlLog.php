@@ -1,6 +1,5 @@
 <?php
-include(".././models/mdlLog.php");
-include(".././config.php");
+include($_SERVER['DOCUMENT_ROOT'].'/GymTech-Manager/src/models/mdlLog.php');
 class CtrlLog extends mdlLog{
     public function getAccess($alias, $passwd){
         return mdlLog::getAccess($alias, $passwd);
@@ -10,7 +9,7 @@ class CtrlLog extends mdlLog{
 if(isset($_POST['log'])){
     header("Content-Type: application/json; charset=utf-8");
     $response = array(
-        "status" => "Error",
+        "status" => "error",
         "message" => "Credenciales no validas",
         "data" => null,
     );
@@ -20,18 +19,16 @@ if(isset($_POST['log'])){
     extract($_POST);
     switch($log){
         case 'getAccess':
+            session_start();
             $request = $controller->getAccess($alias, $passwd);
             if($request[0]){
-                $response['status'] = 'Success';
+                $response['status'] = 'success';
                 $response['message'] = $request[1];
                 $response['data'] = $request[2];
-                session_start();
-                $_SESSION['GYM'] = $request[2];
-                cargarVista("main");
             }else{
                 $response['status'] = 'error';
                 $response['message'] = $request[1];
-                $response['data'] = $request[2];
+                $response['data'] = null;
             }
             echo json_encode($response);
             break;

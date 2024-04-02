@@ -1,3 +1,7 @@
+<?php
+session_start();
+if(isset($_SESSION['GYM']['nombre']) && $_SESSION['GYM']['nombre'] != ""){
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +43,7 @@
                                           <!-- Contenido del menú desplegable -->
                                           <div id="myDropdown" class="dropdownlist absolute bg-gray-800 text-white right-0 mt-3 p-3 overflow-auto z-30 invisible">
                                                 <!-- Opción del menú -->
-                                                <a href="#" class="p-2 bg-gray-800 text-white text-sm no-underline hover:no-underline block">
+                                                <a href="./logout.php" class="p-2 bg-gray-800 text-white text-sm no-underline hover:no-underline block">
                                                       <!-- Icono y texto de la opción -->
                                                       <i class="fas fa-sign-out-alt fa-fw"></i> Salir
                                                 </a>
@@ -147,3 +151,8 @@
 </script>
 </body>
 </html>
+<?php
+}else{
+      header('location: ../../index.php');
+}
+?>
