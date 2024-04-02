@@ -25,7 +25,7 @@ $('#form-log').on("submit", function(e) {
                               icon: "success",
                               title: "Bienvenido"
                         });
-                        
+                        location.reload();
                   }
             },
             error: function(errorThrown) {

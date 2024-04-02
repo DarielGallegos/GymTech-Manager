@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (isset($_SESSION['GYM']['nombre'])) {
-      echo 'Gola Mundo';
+if (isset($_SESSION['GYM']['nombre']) && $_SESSION['GYM']['nombre'] != "") {
+      header('location: ./src/views/main.php');
 } else{
 ?>
       <!DOCTYPE html>

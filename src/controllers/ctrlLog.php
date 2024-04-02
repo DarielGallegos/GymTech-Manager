@@ -19,6 +19,7 @@ if(isset($_POST['log'])){
     extract($_POST);
     switch($log){
         case 'getAccess':
+            session_start();
             $request = $controller->getAccess($alias, $passwd);
             if($request[0]){
                 $response['status'] = 'success';
