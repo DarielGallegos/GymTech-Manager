@@ -1,6 +1,6 @@
 
 <?php
-    include("../../configuracion/conexion.php");
+    include("../repository/connectMySQL.php");
 
     $respuesta = array();
     // Obtiene los parametros enviados del front
@@ -24,10 +24,11 @@
 
     try {
         // conecta a la base de datos
-        $conn = connectMySQL::getInstance()->createConnection();
+        $conn = new connectMySQL();
+        $condb = $conn->getInstance()->createConnection();
         //prepara la consulta
-        $query = "CALL INSERT_EMPLEADOS(?,?,?,?,?,?,?,?,?,?,? ,?)";
-        $statement = $conn->prepare($query);
+        $query = "CALL empleadosInsert(?,?,?,?,?,?,?,?,?,?,? ,?)";
+        $statement = $condb->prepare($query);
 
         // le pasamos los datos que se insertarán en la consulta
         $statement->bindParam(1, $nombre);

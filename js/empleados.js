@@ -117,7 +117,7 @@ function toggleSubMenu(id) {
 function registrarEmpleados(e) {
     e.preventDefault();
 
-    let url = "../controladores/emp_controller.php";
+    let url = "../controllers/emp_controller.php";
   
     let nombres = document.getElementById('nombres').value;
     let primer_apellido = document.getElementById('primer_apellido').value;
@@ -145,10 +145,7 @@ function registrarEmpleados(e) {
             email:email,
             domicilio:domicilio,
             IniLab:IniLabores,
-        };
-    console.log('test body',body);
-    
-    
+        };    
     /// Hace petición http al servidor
     fetch(url, {
         method: "POST",
@@ -157,25 +154,22 @@ function registrarEmpleados(e) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                swal({
+                Swal.fire({
                     title: "Éxito",
                     text: data.msg,
                     icon: "success",
-                    button: "OK",
                 }).then((value) => {
                     if (value) {
                         limpiarCampos();
-                        window.location.href = '../../src/views/empleados.php';
+                        location.reload();
                     }
                 });
             } else {
-                swal({
+                Swal.fire({
                     text: 'Error, No se ha podidio registrar el Empleado',
                     icon: 'error',
                     title: 'Error'
                 });
-               /* alert('[Error] ' + data.msg);
-                return;*/
             }
         })
         .catch(error => {

@@ -25,6 +25,7 @@ if (isset($_SESSION['GYM']['nombre']) && $_SESSION['GYM']['nombre'] != "") {
 
             <main style="margin-top: 60px; align-content: center;">
                   <?php include("../components/nav.php");?>
+                  
             </main>
 
             <script>
