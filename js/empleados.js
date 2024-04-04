@@ -114,69 +114,6 @@ function toggleSubMenu(id) {
     submenu.classList.toggle("hidden");
 }
 
-/* function registrarEmpleados(e) {
-    e.preventDefault();
-
-    let url = "../controllers/emp_controller.php";
-  
-    let nombres = document.getElementById('nombres').value;
-    let primer_apellido = document.getElementById('primer_apellido').value;
-    let segundo_apellido = document.getElementById('segundo_apellido').value;
-    let dni = document.getElementById('dni').value;
-    let fechaNacimiento = document.getElementById('nac').value;
-    let genero = document.getElementById('genero').value;
-    let cargos = document.getElementById('cargos').value;
-    let horarios = document.getElementById('horarios').value;
-    let telefono = document.getElementById('telefono').value;
-    let email = document.getElementById('email').value;
-    let domicilio = document.getElementById('domicilio').value;
-    let IniLabores = document.getElementById('IniLab').value;
-
-    const body = { 
-            nombres: nombres,
-            primer_apellido:primer_apellido,
-            segundo_apellido:segundo_apellido,
-            dni:dni,
-            nac:fechaNacimiento,
-            genero:genero,
-            cargos:cargos,
-            horarios:horarios,
-            telefono:telefono,
-            email:email,
-            domicilio:domicilio,
-            IniLab:IniLabores,
-        };    
-    /// Hace petición http al servidor
-    fetch(url, {
-        method: "POST",
-        body: JSON.stringify(body)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    title: "Éxito",
-                    text: data.msg,
-                    icon: "success",
-                }).then((value) => {
-                    if (value) {
-                        limpiarCampos();
-                        location.reload();
-                    }
-                });
-            } else {
-                Swal.fire({
-                    text: 'Error, No se ha podidio registrar el Empleado',
-                    icon: 'error',
-                    title: 'Error'
-                });
-            }
-        })
-        .catch(error => {
-            console.error("registrarEmpleados: [Error]", error);
-        });
-} */
-
 $('#formularioEmpleados').on('submit', (e) => {
     e.preventDefault();
     const Toast = Swal.mixin({
@@ -277,8 +214,9 @@ function deleteEmpleado(id) {
                     Toast.fire({
                         icon: 'success',
                         title: "Empleado eliminado con exito"
+                    }).then((res) =>{
+                        location.reload();
                     })
-                    location.reload();
                 } else {
                     Toast.fire({
                         icon: 'error',
