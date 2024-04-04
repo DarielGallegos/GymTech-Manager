@@ -1,26 +1,37 @@
 <?php
 include("../repository/connectMySQL.php");
     class mdlEmpleados extends connectMySQL{
-        public function insertEmpleado($id){
+        public function insertEmpleados($nombres, $apellidoP, $apellidoM, $dni, $fechaNac, $genero, $id_cargo, $id_horario, $telefono, $email, $domicilio, $fechaIniLabores, $id){
             $sql = "CALL empleadosInsert(?,?,?,?,?,?,?,?,?,?,?,?)";
             if($id != 0){
-                $sql = "CALL empleadosInsert(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                $sql = "CALL empleadosUpdate(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             }
             try{
                 $conn = connectMySQL::getInstance()->createConnection();
                 $statement = $conn->prepare($sql);
+                $statement->bindParam(1, $nombres);
+                $statement->bindParam(2, $apellidoP);
+                $statement->bindParam(3, $apellidoM);
+                $statement->bindParam(4, $dni);
+                $statement->bindParam(5, $fechaNac);
+                $statement->bindParam(6, $genero);
+                $statement->bindParam(7, $id_cargo);
+                $statement->bindParam(8, $id_horario);
+                $statement->bindParam(9, $telefono);
+                $statement->bindParam(10, $email);
+                $statement->bindParam(11, $domicilio);
+                $statement->bindParam(12, $fechaIniLabores);
                 if($id != 0){
                     $statement->bindParam(13, $id);
                 }
-                //Falta pasar paramentros
                 if($statement->execute()){
                     $result = $statement->rowCount();
                 }else{
                     $result = $statement->errorInfo();
                 }
-                return [true, "Insercion de Empleado correctamentes", $result];
+                return [true, "Exito al ejecutar peticion", $result];
             }catch(PDOException $e){
-                return [false, "Error al insertar datos", $e->getMessage()];
+                return [false, "Error al ejecutar peticion", $e->getMessage()];
             }
         }
         public function getEmpleados(){
@@ -36,6 +47,22 @@ include("../repository/connectMySQL.php");
                 return [true, "Exito al solicitar informacion", $result];
             }catch(PDOException $e){
                 return [false, "Error al solicitar informacion", $e->getMessage()];
+            }
+        }
+        public function getOneEmpleado($id){
+            $sql = 'CALL empleadosGetOne(?)';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sql);
+                $statement->bindParam(1, $id);
+                if($statement->execute()){
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, "Exito al solicitar registro", $result];
+            }catch(PDOException $e){
+                return [false, "Error al procesar consulta", $e->getMessage()];
             }
         }
         public function getHorarios(){

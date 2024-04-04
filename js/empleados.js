@@ -114,7 +114,7 @@ function toggleSubMenu(id) {
     submenu.classList.toggle("hidden");
 }
 
-function registrarEmpleados(e) {
+/* function registrarEmpleados(e) {
     e.preventDefault();
 
     let url = "../controllers/emp_controller.php";
@@ -175,7 +175,63 @@ function registrarEmpleados(e) {
         .catch(error => {
             console.error("registrarEmpleados: [Error]", error);
         });
-}
+} */
+
+$('#formularioEmpleados').on('submit', (e) => {
+    e.preventDefault();
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    let nombres = document.getElementById('nombres').value;
+    let primer_apellido = document.getElementById('primer_apellido').value;
+    let segundo_apellido = document.getElementById('segundo_apellido').value;
+    let dni = document.getElementById('dni').value;
+    let fechaNacimiento = document.getElementById('nac').value;
+    let genero = document.getElementById('genero').value;
+    let cargos = document.getElementById('cargos').value;
+    let horarios = document.getElementById('horarios').value;
+    let telefono = document.getElementById('telefono').value;
+    let email = document.getElementById('email').value;
+    let domicilio = document.getElementById('domicilio').value;
+    let IniLabores = document.getElementById('IniLab').value;
+    $.post('.././controllers/ctrlEmpleados.php', {
+        reg: 'insertEmpleados',
+        nombres: nombres,
+        apellidoP: primer_apellido,
+        apellidoM: segundo_apellido,
+        dni: dni,
+        fechaNac: fechaNacimiento,
+        genero: genero,
+        id_cargo: cargos,
+        id_horario: horarios,
+        telefono: telefono,
+        email: email,
+        domicilio: domicilio,
+        fechaIniLabores: IniLabores
+    }).done((response) => {
+        if(response.status === 'success'){
+            Toast.fire({
+                icon: 'success',
+                text: 'Exito al registrar empleado'
+            }).then((res) => {
+                location.reload();
+            })
+        }else{
+            Toast.fire({
+                icon: 'error',
+                text: 'Error al registrar empleado'
+            })
+        }
+    })
+});
 
 function limpiarCampos(){
     document.getElementById('nombres').value="";
@@ -193,3 +249,44 @@ function limpiarCampos(){
     
 }
 
+function deleteEmpleado(id) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    Swal.fire({
+        icon: "warning",
+        title: "¿Seguro desea eliminar este empleado?",
+        text: 'Si lo hace, el regitro de empleados no estará disponible.',
+        showCancelButton: true,
+        focusConfirm: false
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post('.././controllers/ctrlEmpleados.php', {
+                reg: 'deleteEmpleado',
+                id: id
+            }).done((response) => {
+                if (response.status === 'success') {
+                    Toast.fire({
+                        icon: 'success',
+                        title: "Empleado eliminado con exito"
+                    })
+                    location.reload();
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: "Error al intentar eliminar empleado"
+                    })
+                }
+            })
+
+        }
+    });
+}
