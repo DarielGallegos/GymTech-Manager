@@ -124,45 +124,45 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                             </button>
                                         </div>
                                         <!-- Modal body -->
-                                        <form class="p-3 md:p-3 max-w-xl mx-auto" id="formularioEmpleados" method="p    ost">
+                                        <form class="p-3 md:p-3 max-w-xl mx-auto" id="formularioEmpleados">
                                             <div class="grid gap-8">
                                                 <div>
                                                     <input type="hidden" name="id" id="txtID" value="">
-                                                    <input type="hidden" name="request" id="txtRequest" value="agregarEmpleados">
+                                                    <input type="hidden" name="reg" id="txtRequest" value="insertEmpleados">
                                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nombres">Nombres:</label>
-                                                    <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer y segundo nombre" type="text" id="nombres" required="" />
+                                                    <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer y segundo nombre" type="text" id="nombres" name="nombres" required="" />
                                                     <div class="flex flex-wrap justify-between">
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Primer Apellido:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer apellido" type="text" id="primer_apellido" required="" />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer apellido" type="text" id="primer_apellido" name="apellidoP" required="" />
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Segundo Apellido:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Segundo apellido" type="text" id="segundo_apellido" required=" " />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Segundo apellido" type="text" id="segundo_apellido" name="apellidoM" required=" " />
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">DNI:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="DNI" type="text" id="dni" required=" " />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="DNI" type="text" id="dni" name="dni" required=" " />
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-wrap justify-between">
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nac">Fecha de Nacimiento:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" type="date" id="nac" required="" />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" type="date" id="nac" name="fechaNac" required="" />
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Email:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Email" type="email" id="email" required="" />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Email" type="email" id="email" name="email" required="" />
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Teléfono:</label>
-                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Teléfono" type="tel" id="telefono" required="" />
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Teléfono" type="tel" id="telefono" name="telefono" required="" />
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-wrap justify-between">
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label for="genero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Género:</label>
-                                                            <select id="genero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                            <select id="genero" name="genero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                                 <option selected>Seleccione:</option>
                                                                 <option value="F">Femenino</option>
                                                                 <option value="M">Masculino</option>
@@ -170,7 +170,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label for="cargos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cargo:</label>
-                                                            <select id="cargos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                                                            <select id="cargos" name="id_cargo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                                                                 <option selected disabled>Seleccione:</option>
                                                                 <?php for ($i = 0; $i < count($cargos); $i++) { ?>
                                                                     <option value="<?= $cargos[$i]['ID'] ?>"><?= $cargos[$i]['nombre'] ?></option>
@@ -179,7 +179,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                         </div>
                                                         <div class="w-full sm:w-1/3 mt-4">
                                                             <label for="horarios" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Horario:</label>
-                                                            <select id="horarios" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                            <select id="horarios" name="id_horario" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                                 <option selected disabled>Seleccione:</option>
                                                                 <?php
                                                                 for ($i = 0; $i < count($horario); $i++) {
@@ -191,24 +191,21 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                     </div>
                                                     <div class="w-full  mt-4">
                                                         <label flor="domicilio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Domicilio:</label>
-                                                        <textarea id="domicilio" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
+                                                        <textarea id="domicilio" name="domicilio" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
                                                     </div>
                                                     <div class="w-full mt-4">
                                                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Inicio de labores:</label>
-                                                        <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Inicio Labores" type="date" id="IniLab" required />
+                                                        <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Inicio Labores" type="date" id="IniLab" name="fechaIniLabores" required />
                                                     </div>
                                                     <div class="mt-6 flex justify-center">
-                                                        <button onclick="registrarEmpleados(event)" type="submit" id="btnGuardar" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-sm px-20 py-3 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-
+                                                        <button type="submit" id="btnGuardar" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-bold rounded-lg text-sm px-20 py-3 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                                             Registrar
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                        </form>
                                     </div>
-
-                                    </form>
                                 </div>
                             </div>
                     </div>
@@ -226,10 +223,9 @@ if (isset($_SESSION['GYM']['nombre'])) {
         <script>
             document.title = "empleados";
         </script>
-
         <script src="../../js/empleados.js"></script>
         <script>
-            function deleteEmpleado(id) {
+            function updateEmpleado(id) {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -241,34 +237,148 @@ if (isset($_SESSION['GYM']['nombre'])) {
                         toast.onmouseleave = Swal.resumeTimer;
                     }
                 });
-                Swal.fire({
-                    icon: "warning",
-                    title: "¿Seguro desea eliminar este empleado?",
-                    text: 'Si lo hace, el regitro de empleados no estará disponible.',
-                    showCancelButton: true,
-                    focusConfirm: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.post('.././controllers/ctrlEmpleados.php', {
-                            reg: 'deleteEmpleado',
-                            id: id
-                        }).done((response) => {
-                            if (response.status === 'success') {
-                                Toast.fire({
-                                    icon: 'success',
-                                    title: "Empleado eliminado con exito"
-                                })
-                                location.reload();
-                            } else {
-                                Toast.fire({
-                                    icon: 'error',
-                                    title: "Error al intentar eliminar empleado"
-                                })
-                            }
-                        })
-
-                    }
-                });
+                $.post('.././controllers/ctrlEmpleados.php', {
+                    reg: 'getOneEmpleado',
+                    id: id
+                }).done((response) => {
+                    Swal.fire({
+                        title: "Formulario de Modificacion de Empleado",
+                        html: `
+                        <form class="p-3 md:p-3 max-w-xl mx-auto" id="formularioEmpleados">
+                                            <div class="grid gap-8">
+                                                <div>
+                                                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nombres">Nombres:</label>
+                                                    <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer y segundo nombre" type="text" id="nombresUp" name="nombres" value='${response.data[0]['nombres']}' required="" />
+                                                    <div class="flex flex-wrap justify-between">
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Primer Apellido:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer apellido" type="text" id="primer_apellidoUp" name="apellidoP" value='${response.data[0]['apellido-paterno']}' required="" />
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Segundo Apellido:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Segundo apellido" type="text" id="segundo_apellidoUp" name="apellidoM" value='${response.data[0]['apellido-materno']}' required=" " />
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">DNI:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="DNI" type="text" id="dniUp" name="dni" value='${response.data[0]['dni']}' required=" " />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-wrap justify-between">
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nac">Fecha de Nacimiento:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" type="date" id="nacUp" name="fechaNac" value='${response.data[0]['fecha-nac']}' required="" />
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Email:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Email" type="email" id="emailUp" name="email" value='${response.data[0]['email']}' required="" />
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Teléfono:</label>
+                                                            <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Teléfono" type="tel" id="telefonoUp" name="telefono" value='${response.data[0]['telefono']}' required="" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-wrap justify-between">
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label for="genero" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Género:</label>
+                                                            <select id="generoUp" name="genero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                <option selected>Seleccione:</option>
+                                                                <option value="F">Femenino</option>
+                                                                <option value="M">Masculino</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label for="cargos" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cargo:</label>
+                                                            <select id="cargosUp" name="id_cargo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                                                                <option selected disabled>Seleccione:</option>
+                                                                <?php for ($i = 0; $i < count($cargos); $i++) { ?>
+                                                                    <option value="<?= $cargos[$i]['ID'] ?>"><?= $cargos[$i]['nombre'] ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="w-full sm:w-1/3 mt-4">
+                                                            <label for="horarios" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Horario:</label>
+                                                            <select id="horariosUp" name="id_horario" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                                                <option selected disabled>Seleccione:</option>
+                                                                <?php
+                                                                for ($i = 0; $i < count($horario); $i++) {
+                                                                ?>
+                                                                    <option value="<?= $horario[$i]['ID'] ?>"><?= $horario[$i]['nombre'] ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full  mt-4">
+                                                        <label flor="domicilio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Domicilio:</label>
+                                                        <textarea id="domicilioUp" name="domicilio" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">${response.data[0]['domicilio']}</textarea>
+                                                    </div>
+                                                    <div class="w-full mt-4">
+                                                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Inicio de labores:</label>
+                                                        <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Inicio Labores" type="date" id="IniLabUp" name="fechaIniLabores" value='${response.data[0]['fecha-inicio-labores']}' required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                        `,
+                        showCancelButton: true,
+                        confirmButtonText: 'Aceptar',
+                        cancelButtonText: 'Cancelar',
+                        didOpen: () => {
+                            document.getElementById('generoUp').value = response.data[0]['genero'];
+                            document.getElementById('cargosUp').value = response.data[0]['ID_CARGO'];
+                            document.getElementById('horariosUp').value = response.data[0]['ID_HORARIO'];
+                        }
+                    }).then((flag) => {
+                        if (flag.isConfirmed) {
+                            let nombres = document.getElementById('nombresUp').value;
+                            let primer_apellido = document.getElementById('primer_apellidoUp').value;
+                            let segundo_apellido = document.getElementById('segundo_apellidoUp').value;
+                            let dni = document.getElementById('dniUp').value;
+                            let fechaNacimiento = document.getElementById('nacUp').value;
+                            let genero = document.getElementById('generoUp').value;
+                            let cargos = document.getElementById('cargosUp').value;
+                            let horarios = document.getElementById('horariosUp').value;
+                            let telefono = document.getElementById('telefonoUp').value;
+                            let email = document.getElementById('emailUp').value;
+                            let domicilio = document.getElementById('domicilioUp').value;
+                            let IniLabores = document.getElementById('IniLabUp').value;
+                            $.post('.././controllers/ctrlEmpleados.php', {
+                                reg: 'updateEmpleados',
+                                nombres: nombres,
+                                apellidoP: primer_apellido,
+                                apellidoM: segundo_apellido,
+                                dni: dni,
+                                fechaNac: fechaNacimiento,
+                                genero: genero,
+                                id_cargo: cargos,
+                                id_horario: horarios,
+                                telefono: telefono,
+                                email: email,
+                                domicilio: domicilio,
+                                fechaIniLabores: IniLabores,
+                                id: id
+                            }).done((result) => {
+                                if (result.status === 'success') {
+                                    Toast.fire({
+                                        icon: 'success',
+                                        text: 'Exito al registrar empleado'
+                                    }).then((res) => {
+                                        location.reload();
+                                    })
+                                } else {
+                                    Toast.fire({
+                                        icon: 'error',
+                                        text: 'Error al registrar empleado'
+                                    })
+                                }
+                            })
+                        }else{
+                            Toast.fire({
+                                icon: 'info',
+                                text: "Se cancelo la operacion de modifiacion de empleado"
+                            })
+                        }
+                    })
+                })
             }
         </script>
     </body>
