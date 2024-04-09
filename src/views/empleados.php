@@ -213,7 +213,6 @@ if (isset($_SESSION['GYM']['nombre'])) {
                     </section>
                 </div>
             </div>
-            </div>
         </main>
 
 
@@ -371,7 +370,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     })
                                 }
                             })
-                        }else{
+                        } else {
                             Toast.fire({
                                 icon: 'info',
                                 text: "Se cancelo la operacion de modifiacion de empleado"
