@@ -879,6 +879,10 @@ video {
   border-top-right-radius: 0.25rem;
 }
 
+.rounded-tl {
+  border-top-left-radius: 0.25rem;
+}
+
 .rounded-tl-3xl {
   border-top-left-radius: 1.5rem;
 }

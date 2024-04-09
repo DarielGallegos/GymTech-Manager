@@ -24,8 +24,9 @@ $('#form-log').on("submit", function(e) {
                         Toast.fire({
                               icon: "success",
                               title: "Bienvenido"
+                        }).then(() => {
+                              location.reload();
                         });
-                        location.reload();
                   }
             },
             error: function(errorThrown) {
