@@ -1,6 +1,10 @@
 <?php
 session_start();
 if (isset($_SESSION['GYM']['nombre'])) {
+      include($_SERVER['DOCUMENT_ROOT'].'/GymTech-Manager/src/controllers/ctrlFacturacion.php');
+      $controller = new CtrlFacturacion();
+      $membresias = $controller->getMembresiasDisponibles();
+      $membresias = $membresias[2];
 ?>
       <!DOCTYPE html>
       <html lang="en">
@@ -114,6 +118,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
 
             <script src="../../js/detalles.js"></script>
+            <script src="../../js/jquery-3.7.1.min.js"></script>
             <script src="../../js/vwFacturacion.js"></script>
             <script>
                   document.getElementById('addItem').addEventListener('click', () => {
@@ -122,12 +127,18 @@ if (isset($_SESSION['GYM']['nombre'])) {
                         row.innerHTML = 
                         `     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
                                     <section class="relative">
-                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                          <select id="idMembresia" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                                <option value="0">Seleccione</option>
+                                                <?php for($i=0; $i<count($membresias); $i++){?>
+                                                      <option value="<?= $membresias[$i]['ID']?>"><?= $membresias[$i]['nombres-membresia']?></option>
+                                                <?php }?>
+                                          </select>
                                     </section>
                               </td>
                               <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
                                     <section class="relative">
-                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                          <select id="idCliente" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                          </select>
                                     </section>
                               </td>
                               <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-800">
@@ -146,6 +157,22 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     <button class="inline-block rounded-full border border-red-600 bg-transparent p-2.5 text-white hover:text-red-600 focus:outline-none focus:ring active:text-red-500" onclick="deleteElement(this);"><i class="nf nf-oct-trash"></i></button>
                               </td>`;
                         document.getElementById('contentTable').prepend(row);
+                        row.querySelector('#idMembresia').addEventListener('change', () => {
+                              var id = parseInt(row.querySelector('#idMembresia').value);
+                              $.post('../controllers/ctrlFacturacion.php', {
+                                    peticion: 'getClientesAsociados',
+                                    id: id
+                              }).done((response) => {
+                                    if(response.status === 'success'){
+                                          for(i=0; i<response.data.length; i++){
+                                                var element =document.createElement('option');
+                                                element.value = response.data[i]['ID_CLIENTE'];
+                                                element.textContent = response.data[i]['Cliente'];
+                                                row.querySelector('#idCliente').append(element);
+                                          }
+                                    }
+                              })
+                        });
                   })
             </script>
       </body>
