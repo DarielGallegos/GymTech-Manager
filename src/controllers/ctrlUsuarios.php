@@ -4,6 +4,12 @@
         public function getUsuarios(){
             return mdlUsuarios::getUsuarios();
         }
+        public function getEmpleadosSinUsuarios(){
+            return mdlUsuarios::getEmpleadosSinUsuarios();
+        }
+        public function insertUsuarios($registro){
+            return mdlUsuarios::insertUsuarios($registro);
+        }
         public function usuariosGetOne($id){
             return mdlUsuarios::usuariosGetOne($id);
         }
@@ -27,6 +33,19 @@
 
         extract($_POST);
         switch($peticion){
+            case 'insertUsuario':
+                $request = $controller->insertUsuarios($register);
+                if($request[0]){
+                    $response['status'] = 'success';
+                    $response['msg'] = $request[1];
+                    $response['data'] = $request[2];
+                }else{
+                    $response['status'] = 'error';
+                    $response['msg'] = $request[1];
+                    $response['data'] = null;
+                }
+                echo json_encode($response);
+                break;
             case 'getUsuario':
                 $request = $controller->usuariosGetOne($id);
                 if($request[0]){

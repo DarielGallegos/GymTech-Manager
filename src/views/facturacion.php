@@ -41,9 +41,29 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                       <!-- Inicio Encabezado Factura --->
                                                       <section class="col-span-2 rounded-md bg-gray-300 p-2 shadow">
                                                             <h3 class="text-2xl text-center font-bold">Cabecera de Factura</h3>
-                                                            <p>N° Factura: </p>
-                                                            <p>Empleado: <?= $_SESSION['GYM']['nombre'] ?></p>
-                                                            <p>Fecha de Facturación: </p>
+                                                            <section class="flex flex-wrap justify-between">
+                                                                  <section class="order-first">
+                                                                        <p>N° Factura: </p>
+                                                                        <p>Empleado: <?= $_SESSION['GYM']['nombre'] ?></p>
+                                                                        <p>Fecha de Facturación: </p>
+                                                                  </section>
+                                                                  <section class="w-64">
+                                                                        <button class="group relative inline-block text-sm font-medium text-blue-600 focus:outline-none focus:ring active:text-blue-500 w-full" id="addItem">
+                                                                              <span class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                                                                              <span class="relative block border border-current bg-white px-6 py-2">Agregar Nuevo Elemento 📑</span>
+                                                                        </button>
+                                                                        <br>
+                                                                        <button class="group relative inline-block text-sm font-medium text-green-600 focus:outline-none focus:ring active:text-green-500 w-full">
+                                                                              <span class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-green-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>      
+                                                                              <span class="relative block border border-current bg-white px-6 py-2">Guardar 💾</span>      
+                                                                        </button>
+                                                                        <br>
+                                                                        <button class="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500 w-full" id="btnFlush">
+                                                                              <span class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-red-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                                                                              <span class="relative block border border-current bg-white px-6 py-2">Limpiar 🗑️</span>
+                                                                        </button>
+                                                                  </section>
+                                                            </section>
                                                       </section>
                                                       <!-- Fin Encabezado Factura --->
 
@@ -67,7 +87,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
                                                       <!-- Inicio Detalle Factura -->
                                                       <section class="col-span-3 rounded-md bg-gray-300 p-2 shadow">
-                                                            <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 rounded-md">
+                                                            <table class="min-w-full divide-y-2 divide-gray-800 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900 rounded-md">
                                                                   <thead class="items-center">
                                                                         <tr>
                                                                               <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">ID MEMBRESIA</th>
@@ -80,35 +100,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                                               <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Acciones</th>
                                                                         </tr>
                                                                   </thead>
-                                                                  <tbody class="divide-y divide-gray-200 dark:divide-gray-700 text-center">
-                                                                        <tr class="odd:bg-gray-800">
-
-                                                                              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
-                                                                                    <section class="relative">
-                                                                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
-                                                                                    </section>
-                                                                              </td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
-                                                                                    <section class="relative">
-                                                                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
-                                                                                    </section>
-                                                                              </td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-800">
-                                                                                    <section class="relative">
-                                                                                          <select name="" id="" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
-                                                                                                <option value="1">Mensualidad</option>
-                                                                                                <option value="2">Matricula</option>
-                                                                                          </select>
-                                                                                    </section>
-                                                                              </td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">12000</td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">0</td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">1000</td>
-                                                                              <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">11000</td>
-                                                                              <td>
-                                                                                    <button class="inline-block rounded-full border border-red-600 bg-transparent p-2.5 text-white hover:text-red-600 focus:outline-none focus:ring active:text-red-500"><i class="nf nf-oct-trash"></i></button>
-                                                                              </td>
-                                                                        </tr>
+                                                                  <tbody id="contentTable" class="divide-y divide-gray-200 dark:divide-gray-700 text-center">
                                                                   </tbody>
                                                             </table>
                                                       </section>
@@ -122,6 +114,40 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
 
             <script src="../../js/detalles.js"></script>
+            <script src="../../js/vwFacturacion.js"></script>
+            <script>
+                  document.getElementById('addItem').addEventListener('click', () => {
+                        var row = document.createElement('tr');
+                        row.classList.add('bg-gray-800');
+                        row.innerHTML = 
+                        `     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
+                                    <section class="relative">
+                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                    </section>
+                              </td>
+                              <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-800">
+                                    <section class="relative">
+                                          <input type="text" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                    </section>
+                              </td>
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-800">
+                                    <section class="relative">
+                                          <select name="" id="" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                                <option value="1">Mensualidad</option>
+                                                <option value="2">Matricula</option>
+                                          </select>
+                                    </section>
+                              </td>
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">12000</td>
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">0</td>
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">1000</td>
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">11000</td>
+                              <td>
+                                    <button class="inline-block rounded-full border border-red-600 bg-transparent p-2.5 text-white hover:text-red-600 focus:outline-none focus:ring active:text-red-500" onclick="deleteElement(this);"><i class="nf nf-oct-trash"></i></button>
+                              </td>`;
+                        document.getElementById('contentTable').prepend(row);
+                  })
+            </script>
       </body>
       </html>
 <?php

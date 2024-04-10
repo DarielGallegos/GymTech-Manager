@@ -16,6 +16,44 @@
                 return [false, 'Error al procesar consulta', $e->getMessage()];
             }
         }
+        public function getEmpleadosSinUsuarios(){
+            $sql = 'CALL usuariosGetEmpSinUsuario';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sql);
+                if($statement->execute()){
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, 'Exito al ejecutar consulta', $result];
+            }catch(PDOException $e){
+                return [false, 'Error al ejecutar consulta', $e->getMessage()];
+            }
+        }
+        public function insertUsuarios($registro){
+            $sql = 'CALL usuariosInsert(?,?,?,?,?,?,?)';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sql);
+                $statement->bindParam(1, $registro[0]['ID']);
+                $statement->bindParam(2, $registro[0]['Alias']);
+                $statement->bindParam(3, $registro[0]['Password']);
+                $statement->bindParam(4, $registro[0]['pClientes']);
+                $statement->bindParam(5, $registro[0]['pFacturacion']);
+                $statement->bindParam(6, $registro[0]['pReporteria']);
+                $statement->bindParam(7, $registro[0]['pAdministracion']);
+                if($statement->execute()){
+                    $result = $statement->rowCount();
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, 'Exito al ejecutar consulta', $result];
+            }catch(PDOException $e){
+                return [false, 'Error al ejecutar consulta', $e->getMessage()];
+
+            }
+        }
         public function usuariosGetOne($id){
             $sql = 'CALL usuariosGetOne(?)';
             try{
