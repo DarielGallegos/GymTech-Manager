@@ -16,6 +16,44 @@
                 return [false, 'Error al procesar consulta', $e->getMessage()];
             }
         }
+        public function getEmpleadosSinUsuarios(){
+            $sql = 'CALL usuariosGetEmpSinUsuario';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sql);
+                if($statement->execute()){
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, 'Exito al ejecutar consulta', $result];
+            }catch(PDOException $e){
+                return [false, 'Error al ejecutar consulta', $e->getMessage()];
+            }
+        }
+        public function insertUsuarios($registro){
+            $sql = 'CALL usuariosInsert(?,?,?,?,?,?,?)';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sql);
+                $statement->bindParam(1, $registro['ID']);
+                $statement->bindParam(2, $registro['Alias']);
+                $statement->bindParam(3, $registro['Password']);
+                $statement->bindParam(4, $registro['pClientes']);
+                $statement->bindParam(5, $registro['pFacturacion']);
+                $statement->bindParam(6, $registro['pReporteria']);
+                $statement->bindParam(7, $registro['pAdministracion']);
+                if($statement->execute()){
+                    $result = $statement->rowCount();
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, 'Exito al ejecutar consulta', $result];
+            }catch(PDOException $e){
+                return [false, 'Error al ejecutar consulta', $e->getMessage()];
+
+            }
+        }
         public function usuariosGetOne($id){
             $sql = 'CALL usuariosGetOne(?)';
             try{

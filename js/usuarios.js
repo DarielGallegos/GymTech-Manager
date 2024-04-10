@@ -81,6 +81,54 @@ const Toast = Swal.mixin({
     }
 });
 
+$('#formularioUsuarios').on('submit', (e) => {
+    e.preventDefault();
+    var peticion = $('#txtRequest').val();
+    var id = parseInt($('#idEmpleado').val().trim());
+    var alias = $('#alias').val().trim();
+    var passwd = $('#password').val().trim();
+    var passwdC = $('#passwordC').val().trim();
+    var pClientes = parseInt($('#pCliente').val().trim());
+    var pFacturacion = parseInt($('#pFacturacion').val().trim());
+    var pReporteria = parseInt($('#pReporteria').val().trim());
+    var pAdministracion = parseInt($('#pAdministracion').val().trim());
+
+    if(id != 0 && alias != "" && passwd != "" && passwdC != "" && (passwd === passwdC)){
+        var register = {
+            'ID' : id,
+            'Alias' : alias,
+            'Password' : passwd,
+            'pClientes' : pClientes,
+            'pFacturacion' : pFacturacion,
+            'pReporteria' : pReporteria,
+            'pAdministracion' : pAdministracion
+        };
+        $.post('../controllers/ctrlUsuarios.php', {
+            peticion: peticion,
+            register: register
+        }).done((resolve) => {
+            if(resolve.status === 'success'){
+                Toast.fire({
+                    icon: 'success',
+                    text: 'Exito al insertar registro'
+                }).then(() => {
+                    location.reload();
+                })
+            }else{
+                Toast.fire({
+                    icon: 'error',
+                    text: 'Error al crear usuario'
+                })
+            }
+        })
+    }else{
+        Toast.fire({
+            icon: 'info',
+            text: 'Favor asegurese de llenar todos los campos'
+        })
+    }
+})
+
 function updateUsuario(id) {
     $.post('../controllers/ctrlUsuarios.php', {
         peticion: 'getUsuario',
