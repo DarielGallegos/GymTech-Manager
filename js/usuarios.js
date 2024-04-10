@@ -103,23 +103,22 @@ $('#formularioUsuarios').on('submit', (e) => {
             'pReporteria' : pReporteria,
             'pAdministracion' : pAdministracion
         };
-        $.ajax({
-            url: '../controllers/ctrlUsuarios.php',
-            method: 'POST',
-            data: [peticion, register],
-            dataType: 'json',
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: (success) => {
-                if(success.status === 'success'){
-                    Toast.fire({
-                        icon: 'success',
-                        text: 'Exito al insertar registro'
-                    }).then(() => {
-                        location.reload();
-                    })
-                }
+        $.post('../controllers/ctrlUsuarios.php', {
+            peticion: peticion,
+            register: register
+        }).done((resolve) => {
+            if(resolve.status === 'success'){
+                Toast.fire({
+                    icon: 'success',
+                    text: 'Exito al insertar registro'
+                }).then(() => {
+                    location.reload();
+                })
+            }else{
+                Toast.fire({
+                    icon: 'error',
+                    text: 'Error al crear usuario'
+                })
             }
         })
     }else{
