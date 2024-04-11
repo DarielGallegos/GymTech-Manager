@@ -10,6 +10,9 @@
         public function getDatosContables($data){
             return MdlFacturacion::getDatosContables($data);
         }
+        public function insertFactura($header, $detalle, $pie){
+            return MdlFacturacion::insertFactura($header, $detalle, $pie);
+        }
     }
 
     if(isset($_POST['peticion'])){
@@ -38,6 +41,19 @@
                 break;
             case 'getDataContable':
                 $request = $controller->getDatosContables($data);
+                if($request[0]){
+                    $response['status'] = 'success';
+                    $response['msg'] = $request[1];
+                    $response['data'] = $request[2];
+                }else{
+                    $response['status'] = 'error';
+                    $response['msg'] = $request[1];
+                    $response['data'] = null;
+                }
+                echo json_encode($response);
+                break;
+            case 'insertFactura':
+                $request = $controller->insertFactura($header, $detalle, $footer);
                 if($request[0]){
                     $response['status'] = 'success';
                     $response['msg'] = $request[1];

@@ -49,6 +49,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                                   <section class="order-first">
                                                                         <p>N° Factura: </p>
                                                                         <p>Empleado: <?= $_SESSION['GYM']['nombre'] ?></p>
+                                                                        <input type="hidden" id="idEmpleado" value="<?= $_SESSION['GYM']['id']?>">
                                                                         <p>Fecha de Facturación: </p>
                                                                   </section>
                                                                   <section class="w-64">
@@ -57,7 +58,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                                               <span class="relative block border border-current bg-white px-6 py-2">Agregar Nuevo Elemento 📑</span>
                                                                         </button>
                                                                         <br>
-                                                                        <button class="group relative inline-block text-sm font-medium text-green-600 focus:outline-none focus:ring active:text-green-500 w-full">
+                                                                        <button class="group relative inline-block text-sm font-medium text-green-600 focus:outline-none focus:ring active:text-green-500 w-full" id="addFact">
                                                                               <span class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-green-600 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>      
                                                                               <span class="relative block border border-current bg-white px-6 py-2">Guardar 💾</span>      
                                                                         </button>
@@ -77,14 +78,14 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                                   <h3 class="text-2xl font-bold text-center">Detalle Deuda</h3>
                                                             </section>
                                                             <section class="text-xl">
-                                                                  <p>Subtotal: </p>
-                                                                  <p>Descuento: </p>
-                                                                  <p>Sobrecargo: </p>
+                                                                  <p id="pieFacSub">Subtotal: 0 Lps</p>
+                                                                  <p id="pieFacDesc">Descuento: 0 Lps</p>
+                                                                  <p id="pieFacSobre">Sobrecargo: 0 Lps</p>
                                                             </section>
                                                             <section class="text-xl">
-                                                                  <p>Total: </p>
-                                                                  <p>Monto: </p>
-                                                                  <p>Cambio: </p>
+                                                                  <p id="pieFacTot">Total: 0 Lps</p>
+                                                                  <p id="pieMonto">Monto: 0 Lps</p>
+                                                                  <p id="pieCambio">Cambio: 0 Lps</p>
                                                             </section>
                                                       </section>
                                                       <!-- Fin Pie Factura --->
@@ -118,6 +119,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
 
             <script src="../../js/detalles.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="../../js/jquery-3.7.1.min.js"></script>
             <script src="../../js/vwFacturacion.js"></script>
             <script>
@@ -190,12 +192,14 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     'cliente' : idCliente,
                                     'concepto' : concepto
                               }
-                              console.log(data);
                               $.post('../controllers/ctrlFacturacion.php', {
                                     peticion: 'getDataContable',
                                     data: data
                               }).done((response) => {
-                                    row.querySelector('#cellPrecio').textContent = response.data['precio'];
+                                    row.querySelector('#cellPrecio').textContent = response.data[0]['precio'];
+                                    row.querySelector('#cellSobrecargo').textContent = response.data[0]['sobrecargo'];
+                                    row.querySelector('#cellDescuento').textContent = response.data[0]['descuento'];
+                                    row.querySelector('#cellSubTotal').textContent = response.data[0]['subTot'];
                               })
                         });
                         row.querySelector('#idConcepto').addEventListener('change', () => {
@@ -207,9 +211,14 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     'cliente' : idCliente,
                                     'concepto' : concepto
                               }
-                              console.log(data);
                               $.post('../controllers/ctrlFacturacion.php', {
-
+                                    peticion: 'getDataContable',
+                                    data: data
+                              }).done((response) => {
+                                    row.querySelector('#cellPrecio').textContent = response.data[0]['precio'];
+                                    row.querySelector('#cellSobrecargo').textContent = response.data[0]['sobrecargo'];
+                                    row.querySelector('#cellDescuento').textContent = response.data[0]['descuento'];
+                                    row.querySelector('#cellSubTotal').textContent = response.data[0]['subTot'];
                               })
                         });
                   })

@@ -50,5 +50,52 @@
                 return [false, 'Error al procesar consulta', $e->getMessage()];
             }
         }
+        public function insertFactura($header, $detalle, $pie){
+            $sqlHeader = 'CALL facturacionInsertCabecera(?,?,?,?,?)';
+            $sqlDetalle = 'CALL facturacionInsertDetalle(?,?,?,?,?,?,?,?)';
+            $sqlFooter = 'CALL facturacionInsertPie(?,?,?,?)';
+            try{
+                $conn = connectMySQL::getInstance()->createConnection();
+                $statement = $conn->prepare($sqlHeader);
+                $statement->bindParam(1, $header['subtotal']);
+                $statement->bindParam(2, $header['descuento']);
+                $statement->bindParam(3, $header['sobrecargo']);
+                $statement->bindParam(4, $header['total']);
+                $statement->bindParam(5, $header['idEmpleado']);
+                if($statement->execute()){
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                for($i=0; $i<count($detalle); $i++){
+                    $statement = $conn->prepare($sqlDetalle);
+                    $statement->bindParam(1, $result[0]['ID']);
+                    $rgn = $i+1;
+                    $statement->bindParam(2, $rgn);
+                    $statement->bindParam(3, $detalle[$i]['idMembresia']);
+                    $statement->bindParam(4, $detalle[$i]['idCliente']);
+                    $statement->bindParam(5, $detalle[$i]['idConcepto']);
+                    $statement->bindParam(6, $detalle[$i]['precio']);
+                    $statement->bindParam(7, $detalle[$i]['sobrecargo']);
+                    $statement->bindParam(8, $detalle[$i]['descuento']);
+                    $statement->execute();
+                    $statement = null;
+                }
+                $statement = $conn->prepare($sqlFooter);
+                $statement->bindParam(1, $result[0]['ID']);
+                $statement->bindParam(2, $pie['efectivo']);
+                $statement->bindParam(3, $pie['monto']);
+                $statement->bindParam(4, $pie['cambio']);
+                if($statement->execute()){
+                    $result = $statement->rowCount();
+                }else{
+                    $result = $statement->errorInfo();
+                }
+                return [true, "Exito al insertar Factura", $result];
+            }catch(PDOException $e){
+                return [false, 'Error al insertar factura', $e->getMessage()];
+            }
+
+        }
     }
 ?>
