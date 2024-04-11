@@ -141,18 +141,18 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                           </select>
                                     </section>
                               </td>
-                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-800">
+                              <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-gray-800">
                                     <section class="relative">
-                                          <select name="" id="" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
-                                                <option value="1">Mensualidad</option>
-                                                <option value="2">Matricula</option>
+                                          <select name="" id="idConcepto" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
+                                                <option value="2">Mensualidad</option>
+                                                <option value="1">Matricula</option>
                                           </select>
                                     </section>
                               </td>
-                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">12000</td>
-                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">0</td>
-                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">1000</td>
-                              <td class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200">11000</td>
+                              <td id="cellPrecio" class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200"></td>
+                              <td id="cellSobrecargo" class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200"></td>
+                              <td id="cellDescuento" class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200"></td>
+                              <td id="cellSubTotal" class="whitespace-nowrap px-4 py-2 text-gray-200 dark:text-gray-200"></td>
                               <td>
                                     <button class="inline-block rounded-full border border-red-600 bg-transparent p-2.5 text-white hover:text-red-600 focus:outline-none focus:ring active:text-red-500" onclick="deleteElement(this);"><i class="nf nf-oct-trash"></i></button>
                               </td>`;
@@ -164,6 +164,14 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     id: id
                               }).done((response) => {
                                     if(response.status === 'success'){
+                                          var nodeCBO  = row.querySelector('#idCliente');
+                                          while(nodeCBO.firstChild){
+                                                nodeCBO.removeChild(nodeCBO.firstChild);
+                                          }
+                                          var defaultElement =document.createElement('option');
+                                          defaultElement.value = 0;
+                                          defaultElement.textContent = "Seleccione";
+                                          row.querySelector('#idCliente').append(defaultElement);
                                           for(i=0; i<response.data.length; i++){
                                                 var element =document.createElement('option');
                                                 element.value = response.data[i]['ID_CLIENTE'];
@@ -171,6 +179,37 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                 row.querySelector('#idCliente').append(element);
                                           }
                                     }
+                              });
+                        });
+                        row.querySelector('#idCliente').addEventListener('change', () => {
+                              var idMembresia = parseInt(row.querySelector('#idMembresia').value);
+                              var idCliente = parseInt(row.querySelector('#idCliente').value);
+                              var concepto = parseInt(row.querySelector('#idConcepto').value);
+                              data = {
+                                    'membresia' : idMembresia,
+                                    'cliente' : idCliente,
+                                    'concepto' : concepto
+                              }
+                              console.log(data);
+                              $.post('../controllers/ctrlFacturacion.php', {
+                                    peticion: 'getDataContable',
+                                    data: data
+                              }).done((response) => {
+                                    row.querySelector('#cellPrecio').textContent = response.data['precio'];
+                              })
+                        });
+                        row.querySelector('#idConcepto').addEventListener('change', () => {
+                              var idMembresia = parseInt(row.querySelector('#idMembresia').value);
+                              var idCliente = parseInt(row.querySelector('#idCliente').value);
+                              var concepto = parseInt(row.querySelector('#idConcepto').value);
+                              data = {
+                                    'membresia' : idMembresia,
+                                    'cliente' : idCliente,
+                                    'concepto' : concepto
+                              }
+                              console.log(data);
+                              $.post('../controllers/ctrlFacturacion.php', {
+
                               })
                         });
                   })

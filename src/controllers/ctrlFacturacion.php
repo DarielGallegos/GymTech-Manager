@@ -7,6 +7,9 @@
         public function getClientesAsociadosMembresia($id){
             return MdlFacturacion::getClientesAsociadosMembresia($id);
         }
+        public function getDatosContables($data){
+            return MdlFacturacion::getDatosContables($data);
+        }
     }
 
     if(isset($_POST['peticion'])){
@@ -22,6 +25,19 @@
         switch($peticion){
             case 'getClientesAsociados':
                 $request = $controller->getClientesAsociadosMembresia($id);
+                if($request[0]){
+                    $response['status'] = 'success';
+                    $response['msg'] = $request[1];
+                    $response['data'] = $request[2];
+                }else{
+                    $response['status'] = 'error';
+                    $response['msg'] = $request[1];
+                    $response['data'] = null;
+                }
+                echo json_encode($response);
+                break;
+            case 'getDataContable':
+                $request = $controller->getDatosContables($data);
                 if($request[0]){
                     $response['status'] = 'success';
                     $response['msg'] = $request[1];
