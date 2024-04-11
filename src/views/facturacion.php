@@ -132,7 +132,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                           <select id="idMembresia" class="w-full rounded-md border-gray-200 pe-10 shadow-sm sm:text-sm">
                                                 <option value="0">Seleccione</option>
                                                 <?php for($i=0; $i<count($membresias); $i++){?>
-                                                      <option value="<?= $membresias[$i]['ID']?>"><?= $membresias[$i]['nombres-membresia'] . ' N° ' . $membresias[$i]['ID']?></option>
+                                                      <option value="<?= $membresias[$i]['ID']?>"><?= $membresias[$i]['nombres-membresia'] . ' | N° ' . $membresias[$i]['ID']?></option>
                                                 <?php }?>
                                           </select>
                                     </section>
