@@ -219,10 +219,32 @@ if (isset($_SESSION['GYM']['nombre'])) {
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            document.title = "empleados";
-        </script>
+       
+        <script src="../../js/jszip.min.js"></script>
+        <script src="../../js/pdfmake.min.js"></script>
+        <script src="../../js/vfs_fonts.js"></script>
+        <script src="../../js/dataTables.buttons.min.js"></script>
+        <script src="../../js/buttons.html5.min.js"></script>
         <script src="../../js/empleados.js"></script>
+        <script>
+            document.title="Empleados";
+            
+            $(document).ready(function() {
+                
+                $('#tablaEmpleados').DataTable({
+                    "language": {
+                        "url": "../../js/Spanish.json"
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'excelHtml5',
+                        'pdfHtml5'
+                    ]
+                });
+            });
+        </script>
+       
+       
         <script>
             function updateEmpleado(id) {
                 const Toast = Swal.mixin({
