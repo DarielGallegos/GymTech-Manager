@@ -27,7 +27,7 @@
                  <?php }?>
                  <!-- Fin Creacion Modulo Facturacion -->
                  <!-- Creacion Modulo Reportes -->
-                 <?php if($_SESSION['GYM']['reporteria']>0){?>
+                 <?php if($_SESSION['GYM']['reporteria']>9){?>
                  <li class="mr-3 flex-1">
                     <a href="./reportes.php" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600">
                        <i class="fa fa-chart-bar pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Reportes</span>
