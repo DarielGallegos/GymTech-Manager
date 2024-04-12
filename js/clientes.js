@@ -17,7 +17,7 @@ $(document).ready(function () {
         dom: 'Bfrtip',
         
         language: {
-            "url": "js/Spanish.json",
+            "url": "../../js/Spanish.json",
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
