@@ -38,66 +38,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
     <main style="margin-top: 60px; align-content: center;">
         <div class="flex flex-col md:flex-row">
-            <nav aria-label="alternative nav">
-                <div
-                    class="bg-gray-800 shadow-xl h-20 fixed bottom-0 mt-12 md:relative md:h-screen z-10 w-full md:w-48 content-center">
-                    <!--OPCIONES-->
-                    <div
-                        class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-                        <ul
-                            class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-4 text-center md:text-left">
-                            <li class="mr-3 flex-1">
-                                <a href="../../index.php"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600">
-                                    <i class="fas fa-home pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Inicio</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1">
-                                <a href="clientes.php"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600">
-                                    <i class="fa fa-user pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Clientes</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1">
-                                <a href="facturacion.php"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600">
-                                    <i class="fa fa-file pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Facturación</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1">
-                                <a href="reportes.php"
-                                    class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600">
-                                    <i class="fa fa-chart-bar pr-0 md:pr-3"></i><span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Reportes</span>
-                                </a>
-                            </li>
-                            <li class="mr-3 flex-1 relative">
-                                <a href="#"
-                                    class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-blue-600 border-b-2 border-gray-800 hover:border-blue-600"
-                                    onclick="toggleSubMenu('administrar')">
-                                    <i class="fas fa-cogs pr-0 md:pr-3"></i>
-                                    <span
-                                        class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Administración</span>
-                                </a>
-                                <div id="administrar"
-                                    class="absolute bg-gray-400 py-2 rounded shadow-md hidden mt-2 z-10">
-                                    <a href="clientes.php"
-                                        class="block px-9 py-2 text-gray-800 hover:bg-gray-200">Clientes</a>
-                                    <a href="empleados.php"
-                                        class="block px-9 py-2 text-gray-800 hover:bg-gray-200">Empleados</a>
-                                    <a href="#" class="block px-9 py-2 text-gray-800 hover:bg-gray-200">Usuarios</a>
-                                </div>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
+            <?php include('../components/navOutContent.php')?>
             <div id="main" class="main-content flex-1 bg-white  mt-12 md:mt-2 pb-24 md:pb-5 ">
                 <div id="main" class="main-content flex-1 bg-white mt-12 md:mt-2 pb-24 md:pb-5">
                     <div
@@ -105,7 +46,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                         <h1 class="text-3xl font-bold text-center"> Administración de Clientes </h1>
                     </div>
                     <div>
-                        <section class="bg-gray-100 ">
+                        <section class="bg-gray-100 flex justify-center items-center">
                             <div class="mx-auto max-w-screen-xl px-4 py-5 sm:px-6 lg:px-100 ">
                                 <div class="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-5 ">
                                     <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12 py-5">
@@ -560,7 +501,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="../js/registroClientes.js"></script>
+    <script src="../../js/registroClientes.js"></script>
 </body>
 
 </html>
