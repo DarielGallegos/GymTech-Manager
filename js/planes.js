@@ -61,3 +61,12 @@ $(document).ready( function () {
         ]
     });
 });
+
+function toggleDD(myDropMenu) {
+    document.getElementById(myDropMenu).classList.toggle("invisible");
+}
+
+function toggleSubMenu(id) {
+    var submenu = document.getElementById(id);
+    submenu.classList.toggle("hidden");
+}
