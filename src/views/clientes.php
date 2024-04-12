@@ -49,7 +49,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                           <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 ml-4 mr-4">
                                                 <div class="flex justify-between items-center mb-4">
                                                       <div class="flex-grow">
-                                                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">TABLA Clientes</h2>
+                                                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">TABLA CLIENTES</h2>
                                                       </div>
                                                       <button class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-2 rounded inline-flex items-center" onclick="abrirModal()">
                                                             <i class="fa fa-plus pr-0 md:pr-3"></i>Agregar Cliente</button>
@@ -58,7 +58,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                                       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mt-4">
                                                             <tr>
                                                                   <th scope="col" class="px-6 py-3">Nombres</th>
-                                                                  <th scope="col" class="px-6 py-3"> Apellidos</th>
+                                                                  <th scope="col" class="px-6 py-3">Apellidos</th>
                                                                   <th scope="col" class="px-6 py-3">DNI</th>
                                                                   <th scope="col" class="px-6 py-3">Fecha Inscripción</th>
                                                                   <th scope="col" class="px-6 py-3">Fecha Nacimiento</th>
@@ -116,10 +116,12 @@ if (isset($_SESSION['GYM']['nombre'])) {
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script>
-                  document.title = "clientes";
-            </script>
-
+            
+            <script src="../../js/jszip.min.js"></script>
+            <script src="../../js/pdfmake.min.js"></script>
+            <script src="../../js/vfs_fonts.js"></script>
+            <script src="../../js/dataTables.buttons.min.js"></script>
+            <script src="../../js/buttons.html5.min.js"></script>
             <script src="../../js/clientes.js"></script>
             <script>
                   function deleteCliente(id) {

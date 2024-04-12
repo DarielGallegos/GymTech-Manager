@@ -172,7 +172,13 @@ if (isset($_SESSION['GYM']['nombre'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="../../js/usuarios.js"></script>
+
+        <script src="../../js/jszip.min.js"></script>
+        <script src="../../js/pdfmake.min.js"></script>
+        <script src="../../js/vfs_fonts.js"></script>
+        <script src="../../js/dataTables.buttons.min.js"></script>
+        <script src="../../js/buttons.html5.min.js"></script>
+        <script src="../../js/usuarios.js"></script>
 
     </html>
 

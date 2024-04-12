@@ -226,24 +226,7 @@ if (isset($_SESSION['GYM']['nombre'])) {
         <script src="../../js/dataTables.buttons.min.js"></script>
         <script src="../../js/buttons.html5.min.js"></script>
         <script src="../../js/empleados.js"></script>
-        <script>
-            document.title="Empleados";
-            
-            $(document).ready(function() {
-                
-                $('#tablaEmpleados').DataTable({
-                    "language": {
-                        "url": "../../js/Spanish.json"
-                    },
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'excelHtml5',
-                        'pdfHtml5'
-                    ]
-                });
-            });
-        </script>
-       
+     
        
         <script>
             function updateEmpleado(id) {
