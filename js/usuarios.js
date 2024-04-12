@@ -1,8 +1,23 @@
-$(document).ready(() => {
-    document.title = "Administracion de Usuarios";
-    $('#tableUsers').DataTable({
+$(document).ready(function () {
+    document.title = "Usuarios";
+
+    function getCurrentTime() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes; 
+        var timeString = hours + ':' + minutes + ' ' + ampm;
+        return timeString;
+    }
+
+    var tableUsers = $('#tableUsers').DataTable({
         dom: 'Bfrtip',
+        
         language: {
+            "url": "js/Spanish.json",
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
@@ -26,26 +41,60 @@ $(document).ready(() => {
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
+
         buttons: [
             {
-                extend: 'copy',
-                text: 'Copiar',
-                className: 'btn btn-info'
-            },
-            {
-                extend: 'excel',
+                extend: 'excelHtml5',
                 text: 'Exportar a Excel',
-                className: 'btn btn-success'
+                className: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'
+
             },
             {
-                extend: 'pdf',
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
                 text: 'Exportar a PDF',
-                className: 'btn btn-danger'
-            },
-            {
-                extend: 'print',
-                text: 'Imprimir',
-                className: 'btn btn-primary'
+                className: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6] 
+                },
+                customize: function (doc) {
+
+                    doc.styles.title = {
+                        fontSize: '22',
+                        bold: true,
+                        alignment: 'left',
+                        color: '#0c1c32 '
+                    };
+
+                    doc.styles.tableHeader = {
+                        fillColor: '#242c37',
+                        color: '#ffffff',
+                        alignment: 'center',
+                        bold: true
+                    };
+
+                    doc.styles.tableBodyEven = {
+                        fillColor: '#f2f2f2'
+                    };
+
+                    doc.styles.tableBodyOdd = {
+                        fillColor: '#e5e5e5'
+                    };
+
+                    doc.content.unshift({
+                        text: 'Reporte de Usuarios',
+                        style: 'title',
+                        margin: [0, 0, 0, 12]
+                    });
+
+                    doc.content.push({
+                        text: 'Hora de Generación: ' + getCurrentTime(),
+                        fontSize: 10,
+                        alignment: 'right',
+                        margin: [0, 0, 40, 0],
+                        color: '#7f8c8d'
+                    });
+                }
             }
         ]
     });
