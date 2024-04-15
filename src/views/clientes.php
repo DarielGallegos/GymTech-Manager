@@ -144,12 +144,17 @@ if (isset($_SESSION['GYM']['nombre'])) {
                               cancelButtonText: 'Cancelar',
                               confirmButtonText: "Eliminar"
                         }).then((result) => {
-                              if (result.isConfirmed) {
-                                    $.post('.././controllers/ctrlClientes.php', {
-                                          cliente: 'deleteCliente',
-                                          id: id
-                                    }).done((response) => {
-                                          if (response.status === 'success') {
+                              if ( result.isConfirmed ) {
+                                    fetch('.././controllers/ctrlClientes.php', {
+                                          method: "POST",
+                                          body: JSON.stringify({
+                                                cliente: 'deleteCliente',
+                                                id: id
+                                          })
+                                    })
+                                    .then((response) => response.json())
+                                    .then((data) => {
+                                          if (data.status === 'success') {
                                                 Toast.fire({
                                                       icon: 'success',
                                                       title: "Cliente eliminado con exito"
