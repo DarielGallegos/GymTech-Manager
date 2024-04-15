@@ -27,12 +27,17 @@ $('#form-log').on("submit", function(e) {
                         }).then(() => {
                               location.reload();
                         });
+                  }else{
+                        Toast.fire({
+                              icon: "warning",
+                              title: "Credenciales Erroneas."
+                        })
                   }
             },
             error: function(errorThrown) {
                   Toast.fire({
                         icon: "error",
-                        title: "Credenciales invalidas"
+                        title: "Error en la obtencion de credenciales"
                   });
             }
       });

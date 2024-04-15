@@ -12,7 +12,7 @@ if (isset($_SESSION['GYM']['nombre']) && $_SESSION['GYM']['nombre'] != "") {
             <title>GYM</title>
             <meta name="author" content="name">
             <meta name="description" content="description here">
-            <link rel="icon" type="image/x-icon" href="src/img/icon.png">
+            <link rel="icon" type="image/x-icon" href="../../src/img/icon.png">
             <meta name="keywords" content="keywords,here">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
             <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" /> <!--Replace with your tailwind.css once created-->

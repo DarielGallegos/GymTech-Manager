@@ -118,6 +118,10 @@ function toggleSubMenu(id) {
     submenu.classList.toggle("hidden");
 }
 
+function toggleDD(myDropMenu) {
+    document.getElementById(myDropMenu).classList.toggle("invisible");
+}
+
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",

@@ -18,11 +18,12 @@ class mdlLog extends connectMySQL{
                     $_SESSION['GYM']['facturacion'] = $result[0]['facturacion'];
                     $_SESSION['GYM']['reporteria'] = $result[0]['reporteria'];
                     $_SESSION['GYM']['administracion'] = $result[0]['administracion'];
+                    return [true, "Credenciales Validas", $result];
                 }
             }else{
                 $result = $statement->errorCode();
             }
-            return [true, "Credenciales Validas", $result];
+            return [false, "Credenciales no registradas", $result];
         }catch(PDOException $e){
             return [false, "Credenciales No encontradas", $e->getMessage()];
         }
