@@ -226,10 +226,11 @@ function registrarCliente(e) {
     })
         .then(response => response.json())
         .then(data => {
-            if (!data.data.success) {
+            console.log(data);
+            if (!data.data[0]['success']) {
                 swal({
                     title: "Error",
-                    text: data.data.msg,
+                    text: data.data[0]['msg'],
                     icon: "error",
                     button: "Aceptar",
                 })
@@ -238,7 +239,7 @@ function registrarCliente(e) {
             
             swal({
                 title: "Éxito",
-                text: data.data.msg,
+                text: data.data[0]['msg'],
                 icon: "success",
                 button: "OK",
             }).then((value) => {

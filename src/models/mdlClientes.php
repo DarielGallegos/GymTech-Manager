@@ -74,9 +74,7 @@ class mdlClientes extends connectMySQL{
             }else{
                 $result = $statement->errorCode();
             }
-
-                return [true, "Exito al insertar registro", $result];
-            
+            return [true, "Exito al insertar registro", $result];
         }catch(PDOException $e){
             return [false, "Error al insertar cliente", $e->getMessage()];
         }
@@ -90,7 +88,7 @@ class mdlClientes extends connectMySQL{
             if($statement->execute()){
                 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             }else{
-                $resut = $statement->errorInfo();
+                $result = $statement->errorInfo();
             }
             return [true, "Exito al solicitar informacion", $result];
         }catch(PDOException $e){

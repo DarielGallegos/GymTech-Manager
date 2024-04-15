@@ -60,6 +60,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             );
 
             if($result[0]){
+                $response['status'] = 'success';
                 $response['success'] = true;
                 $response['msg'] = $result[1];
                 $response['error'] = 0;
@@ -73,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             echo json_encode($response);
         break;
         case 'updateCliente':
-            $result = $controller->insertClientes($nombres, $primer_apellido, $segundo_apellido, $dni, $fInsc, $fNac, $gen, $tel, $email, $IdEmpl, $ID, $plan_id, $plan_nombre);
+            // $result = $controller->insertClientes($nombres, $primer_apellido, $segundo_apellido, $dni, $fInsc, $fNac, $gen, $tel, $email, $IdEmpl, $ID, $plan_id, $plan_nombre);
             if($result[0]){
                 $response['status'] = 'success';
                 $response['msg'] = $result[1];
