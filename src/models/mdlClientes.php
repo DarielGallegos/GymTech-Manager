@@ -120,7 +120,7 @@ class mdlClientes extends connectMySQL{
         $sql = 'CALL clientesGetOne(?)';
     try 
     {
-        $conn = Conexion::ConexionMySql();
+        $conn = connectMySQL::getInstance()->createConnection();
         $query = $conn->prepare($sql);
         $query -> bindParam(1, $id);
         
@@ -131,7 +131,7 @@ class mdlClientes extends connectMySQL{
         }
         return [TRUE, "LA CONSULTA SE EJECUTO CORRECTAMENTE", $resultado];
         
-    } catch (PDOExeption $e) {
+    } catch (PDOException $e) {
         return [FALSE, 'ERROR EN LA CONSULTA: ' , $e -> getMessage()];
     }
 }

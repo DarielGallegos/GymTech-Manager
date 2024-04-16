@@ -20,7 +20,7 @@ class ctrlClientes extends mdlClientes{
     }
 
     public function clientesUpdate($nombres,$apellidoP,$apellidoM,$dni,$fNac,$gen,$tel,$email,$id){
-        $data = mdlClientes::clientesUpdate($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
+        $data = mdlClientes::updateCliente($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
         return $data;
     }
 
