@@ -99,7 +99,7 @@ $(document).ready(function () {
         ]
     });
 });
-
+ 
   /*Toggle dropdown list*/
   function toggleDD(myDropMenu) {
     document.getElementById(myDropMenu).classList.toggle("invisible");
@@ -130,10 +130,83 @@ window.onclick = function(event) {
             }
         }
     }
-
 }
 
 function toggleSubMenu(id) {
     var submenu = document.getElementById(id);
     submenu.classList.toggle("hidden");
 }
+
+$('#formularioClientes').on('submit', (e) => {
+    e.preventDefault();
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    let nombres = document.getElementById('nombres').value;
+    let primer_apellido = document.getElementById('primer_apellido').value;
+    let segundo_apellido = document.getElementById('segundo_apellido').value;
+    let dni = document.getElementById('dni').value;
+    let fechaNacimiento = document.getElementById('nac').value;
+    let genero = document.getElementById('genero').value;
+    let telefono = document.getElementById('telefono').value;
+    let email = document.getElementById('email').value;
+    $.post('.././controllers/ctrlClientes.php', {
+        reg: 'insertClientes',
+        nombres: nombres,
+        apellidoP: primer_apellido,
+        apellidoM: segundo_apellido,
+        dni: dni,
+        fechaNac: fechaNacimiento,
+        genero: genero,
+        telefono: telefono,
+        email: email,
+    }).done((response) => {
+        if(response.status === 'success'){
+            Toast.fire({
+                icon: 'success',
+                text: 'Exito al registrar empleado'
+            }).then((res) => {
+                location.reload();
+            })
+        }else{
+            Toast.fire({
+                icon: 'error',
+                text: 'Error al registrar empleado'
+            })
+        }
+    })
+});
+
+
+
+//FUNCION PARA EDITAR UN REGISTRO
+function clientesUpdate(id){ 
+
+    $.post('.././controladores/ctrlClientes.php',{
+        request: 'clientesUpdates', 
+        id: id
+    }).done(function (response){
+       console.log(response.data);
+       $("#nombres").val(response.data[0]['nombres']);
+       $("#apellidoP").val(response.data[0]['apellido-paterno']);
+       $("#apellidoM").val(response.data[0]['apellido-materno']);
+       $("#dni").val(response.data[0]['dni']);
+       $("#fechaNac").val(response.data[0]['fecha-nac']);
+       $("#genero").val(response.data[0]['genero']);
+       $("#telefono").val(response.data[0]['telefono']);
+       $("#email").val(response.data[0]['email']);
+       $("#exampleModalLabel").html('Editar Clientes');
+        $("#formularioClientes").modal('show');
+    }).fail(function (error){
+        swal('error','No se pudieron obtener los datos','error');
+    });
+}
+

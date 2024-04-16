@@ -19,7 +19,15 @@ class ctrlClientes extends mdlClientes{
         return mdlClientes::getIntegrantes($nombre_plan);
     }
 
+    public function clientesUpdate($nombres,$apellidoP,$apellidoM,$dni,$fNac,$gen,$tel,$email,$id){
+        $data = mdlClientes::clientesUpdate($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
+        return $data;
+    }
 
+    public function clientesGetOne($id){
+        $data = mdlClientes::clientesGetOne($id);
+        return $data;
+    }
 }
 
 
@@ -73,19 +81,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
             echo json_encode($response);
         break;
-        case 'updateCliente':
-            // $result = $controller->insertClientes($nombres, $primer_apellido, $segundo_apellido, $dni, $fInsc, $fNac, $gen, $tel, $email, $IdEmpl, $ID, $plan_id, $plan_nombre);
-            if($result[0]){
-                $response['status'] = 'success';
-                $response['msg'] = $result[1];
-                $response['data'] = $result[2];
-            }else{
-                $response['status'] = 'error';
-                $response['msg'] = $result[1];
-                $response['data'] = $result[2];
-            }
+        case 'clientesUpdate':
+            $respuesta = $controller->clientesUpdate($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
+            $response = [
+                "status"  => $respuesta[0] ? 'success' : 'Error',
+                "message" => $respuesta[1],
+                "data"    => $respuesta[2]
+            ];
             echo json_encode($response);
-        break;
+                break;
         case 'deleteCliente':
             $result = $controller->deleteCliente($id);
             if($result[0]){
@@ -98,6 +102,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $response['data'] = $result[2];
             }
             echo json_encode($response);
+        break;
+        default:;
         break;
     }
 } 
