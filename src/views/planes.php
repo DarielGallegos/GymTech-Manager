@@ -49,14 +49,14 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                           <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 ml-4 mr-4">
                                                 <div class="flex justify-between items-center mb-4">
                                                       <div class="flex-grow">
-                                                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Tabla Planes</h2>
+                                                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">TABLA PLANES</h2>
                                                       </div>
                                                 </div>
                                                 <table id="tablaPlanes" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mt-4">
                                                             <tr>
                                                                   <th scope="col" class="px-6 py-3">Cliente</th>
-                                                                  <th scope="col" class="px-6 py-3"> Tipo membresía</th>
+                                                                  <th scope="col" class="px-6 py-3">Tipo membresía</th>
                                                                   <th scope="col" class="px-6 py-3">Nombre Plan</th>
                                                                   <th scope="col" class="px-6 py-3">Cod. Plan</th>
                                                                   <th scope="col" class="px-6 py-3">Fecha Inscripción</th>
@@ -91,9 +91,12 @@ if (isset($_SESSION['GYM']['nombre'])) {
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script>
-                  document.title = "Planes";
-            </script>
+           
+            <script src="../../js/jszip.min.js"></script>
+            <script src="../../js/pdfmake.min.js"></script>
+            <script src="../../js/vfs_fonts.js"></script>
+            <script src="../../js/dataTables.buttons.min.js"></script>
+            <script src="../../js/buttons.html5.min.js"></script>
             <script src="../../js/planes.js"></script>
       </body>
 

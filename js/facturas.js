@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    document.title = "Clientes";
+    document.title = "Facturas";
 
     function getCurrentTime() {
         var now = new Date();
@@ -13,11 +13,11 @@ $(document).ready(function () {
         return timeString;
     }
 
-    var tablaClientes = $('#tablaClientes').DataTable({
+    var tablaFacturas = $('#tablaFacturas').DataTable({
         dom: 'Bfrtip',
         
         language: {
-            "url": "../../js/Spanish.json",
+            "url": "js/Spanish.json",
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
@@ -54,9 +54,6 @@ $(document).ready(function () {
                 orientation: 'landscape',
                 text: 'Exportar a PDF',
                 className: 'bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 6, 7, 8] 
-                },
                 customize: function (doc) {
 
                     doc.styles.title = {
@@ -82,7 +79,7 @@ $(document).ready(function () {
                     };
 
                     doc.content.unshift({
-                        text: 'Reporte de Clientes',
+                        text: 'Reporte de Facturas',
                         style: 'title',
                         alignment: 'center',
                         margin: [0, 0, 0, 12]
@@ -95,7 +92,7 @@ $(document).ready(function () {
                         margin: [0, 0, 40, 0],
                         color: '#7f8c8d'
                     });
-
+                    
                     doc.content.splice(1, 0, {
                         margin: [0, 0, 0, 12],
                         alignment: 'center',
@@ -107,114 +104,12 @@ $(document).ready(function () {
         ]
     });
 });
- 
-  /*Toggle dropdown list*/
-  function toggleDD(myDropMenu) {
+
+function toggleDD(myDropMenu) {
     document.getElementById(myDropMenu).classList.toggle("invisible");
-}
-/*Filter dropdown options*/
-function filterDD(myDropMenu, myDropMenuSearch) {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById(myDropMenuSearch);
-    filter = input.value.toUpperCase();
-    div = document.getElementById(myDropMenu);
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-        } else {
-            a[i].style.display = "none";
-        }
-    }
-}
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-    if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
-        var dropdowns = document.getElementsByClassName("dropdownlist");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (!openDropdown.classList.contains('invisible')) {
-                openDropdown.classList.add('invisible');
-            }
-        }
-    }
 }
 
 function toggleSubMenu(id) {
     var submenu = document.getElementById(id);
     submenu.classList.toggle("hidden");
 }
-
-$('#formularioClientes').on('submit', (e) => {
-    e.preventDefault();
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
-    let nombres = document.getElementById('nombres').value;
-    let primer_apellido = document.getElementById('primer_apellido').value;
-    let segundo_apellido = document.getElementById('segundo_apellido').value;
-    let dni = document.getElementById('dni').value;
-    let fechaNacimiento = document.getElementById('nac').value;
-    let genero = document.getElementById('genero').value;
-    let telefono = document.getElementById('telefono').value;
-    let email = document.getElementById('email').value;
-    $.post('.././controllers/ctrlClientes.php', {
-        reg: 'insertClientes',
-        nombres: nombres,
-        apellidoP: primer_apellido,
-        apellidoM: segundo_apellido,
-        dni: dni,
-        fechaNac: fechaNacimiento,
-        genero: genero,
-        telefono: telefono,
-        email: email,
-    }).done((response) => {
-        if(response.status === 'success'){
-            Toast.fire({
-                icon: 'success',
-                text: 'Exito al registrar empleado'
-            }).then((res) => {
-                location.reload();
-            })
-        }else{
-            Toast.fire({
-                icon: 'error',
-                text: 'Error al registrar empleado'
-            })
-        }
-    })
-});
-
-
-
-//FUNCION PARA EDITAR UN REGISTRO
-function clientesUpdate(id){ 
-
-    $.post('.././controladores/ctrlClientes.php',{
-        request: 'clientesUpdates', 
-        id: id
-    }).done(function (response){
-       console.log(response.data);
-       $("#nombres").val(response.data[0]['nombres']);
-       $("#apellidoP").val(response.data[0]['apellido-paterno']);
-       $("#apellidoM").val(response.data[0]['apellido-materno']);
-       $("#dni").val(response.data[0]['dni']);
-       $("#fechaNac").val(response.data[0]['fecha-nac']);
-       $("#genero").val(response.data[0]['genero']);
-       $("#telefono").val(response.data[0]['telefono']);
-       $("#email").val(response.data[0]['email']);
-       $("#exampleModalLabel").html('Editar Clientes');
-        $("#formularioClientes").modal('show');
-    }).fail(function (error){
-        swal('error','No se pudieron obtener los datos','error');
-    });
-}
-

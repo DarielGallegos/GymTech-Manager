@@ -53,6 +53,9 @@
                        <?php if($_SESSION['GYM']['administracion']>=3){?>
                        <a href="./usuarios.php" class="block px-9 py-2 text-gray-800 hover:bg-gray-200">Usuarios</a>
                        <?php }?>
+                       <?php if($_SESSION['GYM']['administracion']>=4){?>
+                       <a href="./facturas.php" class="block px-9 py-2 text-gray-800 hover:bg-gray-200">Facturas</a>
+                       <?php }?>
                     </div>
                  </li>
                  <?php }?>
