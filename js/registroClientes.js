@@ -280,7 +280,7 @@ function obtenerValorPeriodicidad() {
 }
 
 
-function ingresarCodigoDuo() {r
+function ingresarCodigoDuo() {
     let url = "../controladores/codiduo_controller.php";
     let ing_cod_id = document.getElementById('ing_cod_duo_id').value;
 
