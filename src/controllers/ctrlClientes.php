@@ -40,8 +40,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     );
 
     $controller = new ctrlClientes();
-    //Extraer toda la informacion de la peticion
-    extract($_POST);
 
     $json_data = file_get_contents('php://input');
     $data = json_decode($json_data, true);
@@ -81,13 +79,30 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
             echo json_encode($response);
         break;
+        case 'getOneCliente':
+            $request = $controller->clientesGetOne($id);
+            if($request[0]){
+                $response['status'] = 'success';
+                $response['msg'] = $request[1];
+                $response['data'] = $request[2];                
+            }else{
+                $response['status'] = 'error';
+                $response['msg'] = $request[1];
+                $response['data'] = null;                     
+            }
+            echo json_encode($response);
+            break;
         case 'clientesUpdate':
-            $respuesta = $controller->clientesUpdate($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
-            $response = [
-                "status"  => $respuesta[0] ? 'success' : 'Error',
-                "message" => $respuesta[1],
-                "data"    => $respuesta[2]
-            ];
+            $request = $controller->clientesUpdate($nombres, $apellidoP, $apellidoM, $dni, $fNac, $gen, $tel, $email, $id);
+            if($request[0]){
+                $response['status'] = 'success';
+                $response['msg'] = $request[1];
+                $response['data'] = $request[2];                
+            }else{
+                $response['status'] = 'error';
+                $response['msg'] = $request[1];
+                $response['data'] = null;                
+            }
             echo json_encode($response);
                 break;
         case 'deleteCliente':

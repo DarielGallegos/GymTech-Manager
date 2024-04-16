@@ -166,28 +166,36 @@ if (isset($_SESSION['GYM']['nombre'])) {
                         });
                   }
            function updateCliente(id) {
-            Swal.fire({
+            fetch('.././controllers/ctrlClientes.php', {
+                  method: "POST",
+                  body: JSON.stringify({
+                        cliente: 'getOneCliente',
+                        id: id
+                  })
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                  Swal.fire({
                   title: "Formulario de Modificación de Clientes",
                   html: `
                         <form class="p-5 md:p-5 max-w-xl mx-auto" id="formularioClientes">
                         <div class="grid gap-10">
                               <div>
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nombres">Nombres:</label>
-                                    <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" id="nombresUp" placeholder="Primer y segundo nombre" required />
-                                    
+                                    <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" id="nombresUp" placeholder="Primer y segundo nombre" value="${data.data[0]['nombres']}" required />                  
                               </div>
                               <div class="flex flex-wrap justify-between">
                                     <div class="w-full sm:w-1/3">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Primer Apellido:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer apellido" type="text" id="primer_apellidoUp" name="apellidoP" value='' required="" />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Primer apellido" type="text" id="primer_apellidoUp" name="apellidoP" value='${data.data[0]['apellido-paterno']}' required="" />
                                     </div>
                                     <div class="w-full sm:w-1/3">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Segundo Apellido:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Segundo apellido" type="text" id="segundo_apellidoUp" name="apellidoM" value='' required=" " />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Segundo apellido" type="text" id="segundo_apellidoUp" name="apellidoM" value='${data.data[0]['apellido-materno']}' required=" " />
                                     </div>
                                     <div class="w-full sm:w-1/3">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">DNI:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="DNI" type="text" id="dniUp" name="dni" value='' required=" " />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="DNI" type="text" id="dniUp" name="dni" value='${data.data[0]['dni']}' required=" " />
                                     </div>
 
                               </div>
@@ -202,32 +210,64 @@ if (isset($_SESSION['GYM']['nombre'])) {
                                     </div>
                                     <div class="w-full sm:w-1/3">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="primer_apellido">Email:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Email" type="email" id="emailUp" name="email" value='' required="" />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Email" type="email" id="emailUp" name="email" value='${data.data[0]['email']}' required="" />
                                     </div>
                                     <div class="w-full sm:w-1/3">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="segundo_apellido">Teléfono:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Teléfono" type="tel" id="telefonoUp" name="telefono" value='' required="" />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Teléfono" type="tel" id="telefonoUp" name="telefono" value='${data.data[0]['telefono']}' required="" />
                                     </div>
                               </div>
                                     <div class="flex flex-wrap justify-between">
                                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nac">Fecha de Nacimiento:</label>
-                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" type="date" id="nacUp" name="fechaNac" value='' required="" />
+                                          <input class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" type="date" id="fechaNacUp" name="fechaNacUp" value="${data.data[0]['fecha-nac']}" required="" />
                                     </div>
                               </div>
                         </form>
                   `,
                   showCancelButton: true,
                   confirmButtonText: 'Aceptar',
-                  cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                  if (result.isConfirmed) {
-                        // Aquí manejas lo que sucede cuando se confirma el modal, por ejemplo mostrar un mensaje.
-                        Swal.fire({
-                        icon: 'success',
-                        title: '¡Modificación guardada!',
-                        text: 'Los datos han sido modificados.'
-                        });
+                  cancelButtonText: 'Cancelar',
+                  didOpen : () => {
+                        document.getElementById('generoUp').value = data.data[0]['genero'];
                   }
+                  }).then((e) => {
+                        if (e.isConfirmed) {
+                              var nombres = document.getElementById('nombresUp').value;
+                              var apellidoP = document.getElementById('primer_apellidoUp').value;
+                              var apellidoM = document.getElementById('segundo_apellidoUp').value;
+                              var dni = document.getElementById('dniUp').value;
+                              var fNac = document.getElementById('fechaNacUp').value;
+                              var gen = document.getElementById('generoUp').value;
+                              var tel = document.getElementById('telefonoUp').value;
+                              var email = document.getElementById('emailUp').value;
+                              fetch('.././controllers/ctrlClientes.php', {
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                          cliente: 'clientesUpdate',
+                                          nombres: nombres,
+                                          apellidoP: apellidoP,
+                                          apellidoM: apellidoM,
+                                          dni: dni,
+                                          fNac: fNac,
+                                          gen: gen,
+                                          tel: tel,
+                                          email: email,
+                                          id: id
+                                    })
+                              })
+                              .then((resolve) => resolve.json())
+                              .then((datos) => {
+                                    // Aquí manejas lo que sucede cuando se confirma el modal, por ejemplo mostrar un mensaje.
+                                    Swal.fire({
+                                          icon: 'success',
+                                          title: '¡Modificación guardada!',
+                                          text: 'Los datos han sido modificados.'
+                                    }).then((res) => {
+                                          location.reload();
+                                    });    
+                              })
+                        }
+                  });
             });
             }
             </script>
