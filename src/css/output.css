@@ -882,6 +882,10 @@ video {
   justify-items: start;
 }
 
+.gap-10 {
+  gap: 2.5rem;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
